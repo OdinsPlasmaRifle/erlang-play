@@ -1,5 +1,5 @@
 -module(kitchen).
--export([fridge1/0, fridge2/1]).
+-export([fridge1/0, fridge2/1, store/2, take/2, store2/2, take2/2, start/1]).
 
 fridge1() ->
     receive
@@ -32,4 +32,34 @@ fridge2(FoodList) ->
             ok
     end.
 
+store(Pid, Food) ->
+    Pid ! {self(), {store, Food}},
+    receive
+        {Pid, Msg} -> Msg
+    end.
+
+take(Pid, Food) ->
+    Pid ! {self(), {take, Food}},
+    receive
+        {Pid, Msg} -> Msg
+    end.
+
+store2(Pid, Food) ->
+    Pid ! {self(), {store, Food}},
+    receive
+        {Pid, Msg} -> Msg
+    after 3000 ->
+        timeout
+    end.
+
+take2(Pid, Food) ->
+    Pid ! {self(), {store, Food}},
+    receive
+        {Pid, Msg} -> Msg
+    after 3000 ->
+        timeout
+    end.
+
+start(FoodList) ->
+    spawn(?MODULE, fridge2, [FoodList]).
 
