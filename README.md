@@ -1,6 +1,6 @@
 # Learn You Some Erlang For Great Good!
 
-Notes on the *Learn You Some Erlang for great good!* [book](http://learnyousomeerlang.com/content).
+Notes on the *Learn You Some Erlang for Great Good!* [book](http://learnyousomeerlang.com/content).
 
 ## The Shell
 
