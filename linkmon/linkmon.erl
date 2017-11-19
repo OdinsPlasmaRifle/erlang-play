@@ -55,6 +55,7 @@ restarter() ->
         {'EXIT', Pid, shutdown} -> % manual termination, not a crash
             ok;
         {'EXIT', Pid, _} ->
+
             restarter()
     end.
 
